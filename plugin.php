@@ -102,6 +102,7 @@ class Plugin {
 	private function include_widgets_files() {
 		require_once( __DIR__ . '/widgets/hello-world.php' );
 		require_once( __DIR__ . '/widgets/inline-editing.php' );
+		require_once( __DIR__ . '/widgets/banner.php' );
 	}
 
 	/**
@@ -119,6 +120,7 @@ class Plugin {
 		// Register Widgets
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Hello_World() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Inline_Editing() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Megakit_Banner() );
 	}
 
 	/**
@@ -158,16 +160,17 @@ class Plugin {
 
 		add_action('elementor/elements/categories_registered', [$this, 'custome_category']);
 
-		public function custome_category( $elements_manager ){
+	}
 
-			$elements_manager->add_category(
-				'megakit',
-				[
-					'title' => __('Megakit', 'megakit-core'),
-					'icon' => 'fa fa-plug'
-				]
-			)
-		}
+	public function custome_category( $elements_manager ){
+
+		$elements_manager->add_category(
+			'megakit',
+			[
+				'title' => __('Megakit', 'megakit-core'),
+				'icon' => 'fa fa-plug'
+			]
+		);
 	}
 }
 

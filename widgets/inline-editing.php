@@ -47,7 +47,7 @@ class Inline_Editing extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'fa fa-pencil';
+		return 'eicon-posts-ticker';
 	}
 
 	/**
@@ -65,7 +65,7 @@ class Inline_Editing extends Widget_Base {
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return [ 'general' ];
+		return [ 'megakit' ];
 	}
 
 	/**
