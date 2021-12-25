@@ -103,6 +103,7 @@ class Plugin {
 		require_once( __DIR__ . '/widgets/hello-world.php' );
 		require_once( __DIR__ . '/widgets/inline-editing.php' );
 		require_once( __DIR__ . '/widgets/banner.php' );
+		require_once( __DIR__ . '/widgets/flip-box.php' );
 	}
 
 	/**
@@ -121,6 +122,7 @@ class Plugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Hello_World() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Inline_Editing() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Megakit_Banner() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Flip_Box() );
 	}
 
 	/**
@@ -154,12 +156,30 @@ class Plugin {
 
 		// Register editor scripts
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'editor_scripts' ] );
+
+		// Register Flip Box styles
+		add_action( 'elementor/frontend/after_enqueue_styles', [$this, 'flip_box_styles'] );
+
+		// Register Flip Box script
+		add_action( 'elementor/frontend/after_enqueue_scripts', [$this, 'flip_box_scripts'] );
 		
 		$this->add_page_settings_controls();
 
 
 		add_action('elementor/elements/categories_registered', [$this, 'custome_category']);
 
+	}
+
+	function flip_box_styles() {
+
+		wp_enqueue_style( 'flip-box-style', plugins_url( 'assets/css/flip-box.css', __FILE__ ) );
+	
+	}
+
+	function flip_box_scripts() {
+
+		wp_enqueue_script( 'flip-box-script', plugins_url( 'assets/js/flip-box.js', __FILE__), ['jquery'], false, true );
+	
 	}
 
 	public function custome_category( $elements_manager ){

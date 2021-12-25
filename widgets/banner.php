@@ -115,7 +115,7 @@ class Megakit_Banner extends Widget_Base {
 
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(),
-			[
+			[	
 				'name' => 'content_typography',
 				'selector' => '{{WRAPPER}} .sub-title',
 			]
